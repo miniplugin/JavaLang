@@ -3,7 +3,7 @@
 - git add .
 - git commit -m "first commit"
 - git branch -M master
-- git remote add origin https://github.com/miniplugin/clang.git
+- git remote add origin https://github.com/miniplugin/JavaLang.git
 - git push -u origin master
 #### Error: refname refs/heads/master not found 에러처리방법
 - git fetch
