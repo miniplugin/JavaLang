@@ -8,6 +8,7 @@ import java.util.Scanner;
 class CodingTest09Kakao {
 	//김일국 추가 시작
 	String endString = ""; //입력 문자열의 끝에 균형 문자열 누적 변수
+    int count = 0;
 
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
@@ -27,6 +28,7 @@ class CodingTest09Kakao {
 	private String recursive(String w) {
 			// 입력이 빈 문자열인 경우, 빈 문자열을 반환
 			if (w == null || w.equals("")) {
+                    System.out.println("재귀count:"+count+"마지막");
 					return w + endString;//김일국 추가 + endString 출력결과에 균형 문자열 누적 변수
 			}
 			// 문자열 w를 두 "균형잡힌 괄호 문자열" u, v로 분리합니다. 단, u는 "균형잡힌 괄호 문자열"로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다.
@@ -41,8 +43,9 @@ class CodingTest09Kakao {
 					if("(".equals(u)) endString += ")";
 					//김일국 끝
 					// 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다. 
+          System.out.println("재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
 					u += recursive(v);
-                    System.out.println("디버그하나: " + u);
+          System.out.println("재귀"+count+ "이후 View값으로: "+v+" Unit값누적: "+u);
 					return u;
 			} else {
 					// 빈 문자열에 첫 번째 문자로 '('를 붙입니다. 
