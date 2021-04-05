@@ -15,7 +15,7 @@ class CodingTest09Kakao {
 		//키보드 받기
 		String p = sc.nextLine();//키보드 입력 커서 발생
 		CodingTest09Kakao main = new CodingTest09Kakao();
-		String r = main.recursive(p);
+		String r = main.recursive(p);//리커시브함수 = 재귀함수
 		if(p.equals(r)) {
 			System.out.println("올바른 괄호문자열 입니다.\n"+r);
 		}else{
@@ -43,21 +43,22 @@ class CodingTest09Kakao {
 					if("(".equals(u)) endString += ")";
 					//김일국 끝
 					// 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다. 
-          System.out.println("재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
+          System.out.println("상)재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
 					u += recursive(v);
-          System.out.println("재귀"+count+ "이후 View값으로: "+v+" Unit값누적: "+u);
+          System.out.println("이후)재귀"+count+ "이후 View값으로: "+v+" Unit값누적: "+u);
 					return u;
 			} else {
 					// 빈 문자열에 첫 번째 문자로 '('를 붙입니다. 
 					String createString = "(";
 					// 문자열 v에 대해 1단계부터 재귀적으로 수행한 결과 문자열을 이어 붙입니다. 
+					System.out.println("하)재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
 					createString += recursive(v);
 					// ')'를 다시 붙입니다. 
 					createString += ")";
-                    System.out.println("디버그둘: " + createString);
+                      System.out.println("디버그둘(recursive이후 createString): " + createString + " u값은 " + u);
 					// u의 첫 번째와 마지막 문자를 제거하고, 나머지 문자열의 괄호 방향을 뒤집어서 뒤에 붙입니다. 
 					createString += reArrange(u);
-                    System.out.println(u + " 디버그셋: " + createString);
+                    System.out.println("디버그셋(createString+reArrage): " + createString);
 					return createString;
 			}
 	}
