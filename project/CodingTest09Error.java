@@ -5,8 +5,8 @@ package project;
 */
 import java.util.Scanner;
 class CodingTest09Error {
-	String endString;
-	int count;//디버그용 카운트
+	String endString="";
+	int count=0;//디버그용 카운트
 	public static void main(String[] args) throws Exception {
 		CodingTest09Error main = new CodingTest09Error();
 		Scanner sc = new Scanner(System.in);
@@ -24,26 +24,24 @@ class CodingTest09Error {
 		String u="",v="";
 		if(w==null || w.equals("")) {
 			return w + endString;
-		}else{
-			int balancedIndex = getBalancedIndex(w);//w를 u,v로 파싱힐때 사용할 시작 인덱스값 추출
-			u = w.substring(0, balancedIndex+1);//파싱주의 substring(시작인덱스, 끝인덱스-1)
-			v = w.substring(balancedIndex+1);
-			boolean isValidCheck = isValidString(u);//올바른 괄호문자열인지 확인 예, ()
-			if(isValidCheck==true) {
-				if(u.equals("(")) {
-					endString += ")";
-				}else{
-					System.out.println("상)재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
-					u += recursive(v);//재귀함수 호출하면서 u값 누적.
-				}
-				return u;
-			}else{//올바른 괄호문자열이 아니라면.
-				String createString = "(";
-				createString += recursive(v);//재귀함수 호출하면서 createString값 누적.
-				createString += ")";
-				createString += reArrange(u);//올바른 괄호문자열 만들기
-				return createString;
+		}
+		int balancedIndex = getBalancedIndex(w);//w를 u,v로 파싱힐때 사용할 시작 인덱스값 추출
+		u = w.substring(0, balancedIndex+1);//파싱주의 substring(시작인덱스, 끝인덱스-1)
+		v = w.substring(balancedIndex+1);
+		boolean isValidCheck = isValidString(u);//올바른 괄호문자열인지 확인 예, ()
+		if(isValidCheck==true) {
+			if(u.equals("(")) {
+				endString += ")";
 			}
+			System.out.println("상)재귀count: " + count++ + " W를 분해: Unit값: "+u+" Viewr값: "+v);
+			u += recursive(v);//재귀함수 호출하면서 u값 누적.
+			return u;
+		}else{//올바른 괄호문자열이 아니라면.
+			String createString = "(";
+			createString += recursive(v);//재귀함수 호출하면서 createString값 누적.
+			createString += ")";
+			createString += reArrange(u);//올바른 괄호문자열 만들기
+			return createString;
 		}
 	}
 	//올바른 괄호문자열 만들기
@@ -62,24 +60,23 @@ class CodingTest09Error {
 	//올바른 문자열인지 확인 예, ()
 	public boolean isValidString(String u) {
 		int balanceCount = 0;
-		for(int i=1; i<u.length()-1; i++) {
+		for(int i=0; i<u.length(); i++) {
 			String tmpChar = u.substring(i, i+1);//파싱주의 substring(시작인덱스, 끝인덱스-1)
 			if(tmpChar.equals("(")) {
 				balanceCount++;
 			}else if(tmpChar.equals(")")) {
 				balanceCount--;
 			}
+			if(balanceCount < 0) {
+				return false;
+			}
 		}
-		if(balanceCount < 0) {
-			return false;
-		}else{
-			return true;
-		}
+		return true;
 	}
 	//w를 u,v로 파싱힐때 사용할 시작 인덱스값 추출
 	public int getBalancedIndex(String w) {
 		int index=0, balanceCount=0;
-		for(int i=1; i<w.length(); i++) {
+		for(int i=0; i<w.length(); i++) {
 			String tmpChar = w.substring(i, i+1);//파싱주의 substring(시작인덱스, 끝인덱스-1)
 			if(tmpChar.equals("(")) {
 				balanceCount++;
